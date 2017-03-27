@@ -1,0 +1,61 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:if condition="{tableData}">
+    <f:then>
+        <div class="table-responsive">
+            <figure class="figure-table">
+                <f:if condition="{tableTitle} || {tableDescription}">
+                    <figcaption>
+                        <f:if condition="{tableTitle}">
+                            <strong id="caption-{data.uid}" class="figure-table-caption">{tableTitle}</strong>
+                        </f:if>
+                        <f:if condition="{tableDescription}">
+                            <span id="summary-{data.uid}" class="figure-table-summary">{tableDescription}</span>
+                        </f:if>
+                    </figcaption>
+                </f:if>
+
+                <table class="table table-bordered table-striped"
+                       {f:if(condition:tableTitle, then:'aria-labelledby="caption-{data.uid}"')}
+                       {f:if(condition:tableDescription, then:'aria-describedby="summary-{data.uid}"')}
+                >
+
+                    <f:if condition="{tableHeader}">
+                        <thead>
+                            <tr>
+                                <f:for each="{tableHeader}" as="cell">
+                                    <th scope="row">
+                                        {cell}
+                                    </th>
+                                </f:for>
+                            </tr>
+                        </thead>
+                    </f:if>
+                    <tbody>
+                        <f:for each="{tableData}" as="row">
+                            <tr>
+                                <f:for each="{row}" as="cell">
+                                    <td >
+                                        {cell}
+                                    </td>
+                                </f:for>
+                            </tr>
+                        </f:for>
+                    </tbody>
+                    <f:if condition="{tableFooter}">
+                        <tfoot>
+                            <tr>
+                                <f:for each="{tableFooter}" as="cell">
+                                    <td>
+                                        {cell}
+                                    </td>
+                                </f:for>
+                            </tr>
+                        </tfoot>
+                    </f:if>
+                </table>
+            </figure>
+        </div>
+    </f:then>
+</f:if>
+</html>

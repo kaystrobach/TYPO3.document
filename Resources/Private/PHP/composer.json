@@ -1,0 +1,13 @@
+{
+    "name": "typo3/document",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Kay Strobach",
+            "email": "info@kay-strobach.de"
+        }
+    ],
+    "require": {
+        "phpoffice/phpexcel": "^1.8"
+    }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2013-05-01T00:00:000" product-name="document">
+        <header/>
+        <body>
+            <trans-unit id="document_spreadsheet_title" xml:space="preserve">
+				<source>Display spreadsheet document</source>
+			</trans-unit>
+            <trans-unit id="document_spreadsheet_description" xml:space="preserve">
+				<source>Renders uploaded spreadsheet documents</source>
+			</trans-unit>
+            <trans-unit id="document_text_title" xml:space="preserve">
+				<source>Display text document</source>
+			</trans-unit>
+            <trans-unit id="document_text_description" xml:space="preserve">
+				<source>Renders uploaded text documents.</source>
+			</trans-unit>
+            <trans-unit id="rendering_options" xml:space="preserve">
+				<source>Rendering options</source>
+			</trans-unit>
+            <trans-unit id="table_delimiter" xml:space="preserve">
+				<source>Field Delimiter</source>
+			</trans-unit>
+            <trans-unit id="table_enclosure" xml:space="preserve">
+				<source>Text enclosure</source>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>
