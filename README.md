@@ -1,6 +1,6 @@
 # Document Extension
 
-##Vision
+## Vision
 
 allow to render spreadsheet and text files in TYPO3
 
