@@ -60,6 +60,8 @@ tt_content.document_spreadsheet {
                 tableFirstRowIsHeader.field = table_header_position
                 tableLastRowIsFooter = TEXT
                 tableLastRowIsFooter.field = table_tfoot
+                tableSheetsToRender = TEXT
+                tableSheetsToRender.field = table_display_sheets
             }
         }
     }

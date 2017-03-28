@@ -1,5 +1,9 @@
 <?php
 
+if (file_exists(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('document') . '/Resources/Private/PHP/vendor/autoload.php')) {
+    require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('document') . '/Resources/Private/PHP/vendor/autoload.php';
+}
+
 $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
 $iconRegistry->registerIcon(
     'tx_document_spreadsheet',

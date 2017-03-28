@@ -24,6 +24,9 @@
             <trans-unit id="table_enclosure" xml:space="preserve">
 				<source>Text enclosure</source>
 			</trans-unit>
+			<trans-unit id="table_display_sheets" xml:space="preserve">
+				<source>Sheets to display</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

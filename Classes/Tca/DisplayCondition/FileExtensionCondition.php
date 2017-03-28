@@ -14,15 +14,41 @@ class FileExtensionCondition
      */
     public function match($parameter) : bool
     {
-        $fileRecord = BackendUtility::getRecord(
-            'sys_file',
-            $parameter['record']['file'][0]
-        );
+        $fileRecord = $this->getFileRecord($parameter);
+
         if ($fileRecord !== null) {
             if (in_array($fileRecord['extension'], $parameter['conditionParameters'])) {
                 return true;
             }
         }
         return false;
+    }
+
+    protected function getFileRecord($parameter)
+    {
+        $fileRecord = null;
+        if (isset($parameter['record']['file'][0])) {
+            // handle sys_file_meta_data
+            $fileRecord = BackendUtility::getRecord(
+                'sys_file',
+                $parameter['record']['file'][0]
+            );
+        } elseif (isset($parameter['record']['media'])) {
+            $fileMetadata = BackendUtility::getRecord(
+                'sys_file_reference',
+                $parameter['record']['media']
+            );
+            $fileRecord = BackendUtility::getRecord(
+                'sys_file',
+                $fileMetadata['uid_local']
+            );
+        } else {
+            print_r($fileRecord);
+            die();
+        }
+
+
+
+        return $fileRecord;
     }
 }

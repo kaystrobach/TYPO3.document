@@ -58,4 +58,11 @@
         </div>
     </f:then>
 </f:if>
+<f:if condition="{renderedSheets}">
+    <div class="table-responsive">
+        <f:for each="{renderedSheets}" as="sheet">
+            {sheet.content -> f:format.raw()}
+        </f:for>
+    </div>
+</f:if>
 </html>
