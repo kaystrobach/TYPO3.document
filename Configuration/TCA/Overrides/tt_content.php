@@ -95,40 +95,47 @@ $GLOBALS['TCA']['tt_content']['types']['document_spreadsheet'] = [
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['document_text'] = [
-    'showitem' => '--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.general;general,
+    'showitem' => '
+               --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                 --palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.general;general,
                  media,
-               --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
+               --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+               --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                 --palette--;;hidden,
                  --palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.visibility;visibility,
                  --palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;access,
                --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.extended',
-    'overrideChildTca' => [
-        'columns' => [
-            'uid_local' => [
-                'config' => [
-                    'appearance' => [
-                        'elementBrowserAllowed' => 'csv,xlsx,xls',
-                    ]
-                ]
-            ]
-        ]
-    ],
     'columnsOverrides' => [
         'media' => [
             'config' => [
-                'maxitems' => 1,
-                'filter' => [
-                    0 => [
-                        'parameters' => [
-                            'allowedFileExtensions' => 'csv,xlsx,xls',
-                            'disallowedFileExtensions' => ''
+                'overrideChildTca' => [
+                    'columns' => [
+                        'uid_local' => [
+                            'config' => [
+                                'appearance' => [
+                                    'elementBrowserAllowed' => 'docx,odt',
+                                    'disallowedFileExtensions' => ''
+                                ]
+                            ]
                         ]
                     ]
                 ],
                 'appearance' => [
-                    'headerThumbnail' => false
+                    'headerThumbnail' => false,
+                    'fileUploadAllowed' => true,
+                    'collapseAll' => false,
                 ],
+                'maxitems' => 1,
+                'filter' => [
+                    0 => [
+                        'parameters' => [
+                            'allowedFileExtensions' => 'docx,odt',
+                            'disallowedFileExtensions' => ''
+                        ]
+                    ]
+                ]
             ]
-        ]
+        ],
     ]
 ];
 

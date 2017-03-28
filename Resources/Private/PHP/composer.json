@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "phpoffice/phpword": "^0.13.0",
+        "phpoffice/phpword": "dev-develop",
         "phpoffice/phpspreadsheet": "dev-develop"
     }
 }

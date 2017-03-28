@@ -4,22 +4,12 @@
     <f:then>
         <div class="table-responsive">
             <figure class="figure-table">
-                <f:if condition="{tableTitle} || {tableDescription}">
-                    <figcaption>
-                        <f:if condition="{tableTitle}">
-                            <strong id="caption-{data.uid}" class="figure-table-caption">{tableTitle}</strong>
-                        </f:if>
-                        <f:if condition="{tableDescription}">
-                            <span id="summary-{data.uid}" class="figure-table-summary">{tableDescription}</span>
-                        </f:if>
-                    </figcaption>
-                </f:if>
+                <f:render partial="FigureCaption" arguments="{_all}" />
 
                 <table class="table table-bordered table-striped"
                        {f:if(condition:tableTitle, then:'aria-labelledby="caption-{data.uid}"')}
                        {f:if(condition:tableDescription, then:'aria-describedby="summary-{data.uid}"')}
                 >
-
                     <f:if condition="{tableHeader}">
                         <thead>
                             <tr>
@@ -64,7 +54,10 @@
             <style type="text/css">
                 {sheet.styles -> f:format.raw()}
             </style>
-            {sheet.content -> f:format.raw()}
+            <figure class="figure-table">
+                <f:render partial="FigureCaption" arguments="{_all}" />
+                <f:format.raw>{sheet.content}</f:format.raw>
+            </figure>
         </f:for>
     </div>
 </f:if>

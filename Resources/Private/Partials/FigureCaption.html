@@ -1,0 +1,10 @@
+<f:if condition="{tableTitle} || {tableDescription}">
+    <figcaption>
+        <f:if condition="{tableTitle}">
+            <strong id="caption-{data.uid}" class="figure-table-caption">{tableTitle}</strong>
+        </f:if>
+        <f:if condition="{tableDescription}">
+            <span id="summary-{data.uid}" class="figure-table-summary">{tableDescription}</span>
+        </f:if>
+    </figcaption>
+</f:if>

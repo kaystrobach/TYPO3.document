@@ -2,6 +2,7 @@
 
 namespace TYPO3\CMS\Document\Tca\Items;
 
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use TYPO3\CMS\Backend\Form\FormDataProvider\TcaSelectItems;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -26,7 +27,7 @@ class ExtractSheets
         /** @var  TcaSelectItems $itemsObject */;
         $originalFileForLocalProcessing = $file->getForLocalProcessing(true);
         try {
-            $objPHPExcel = \PHPExcel_IOFactory::load($originalFileForLocalProcessing);
+            $objPHPExcel = IOFactory::load($originalFileForLocalProcessing);
 
             $sheets = $objPHPExcel->getAllSheets();
             foreach ($sheets as $key => $sheet) {
