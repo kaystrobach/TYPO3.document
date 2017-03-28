@@ -17,13 +17,15 @@ $GLOBALS['TCA']['tt_content']['columns']['table_display_sheets'] = [
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['document_spreadsheet'] = [
-    'showitem' => '--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.general;general,
+    'showitem' => '
+               --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                 --palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.general;general,
                  media,
                  table_display_sheets,
                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
                  --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.table_layout;tablelayout,
-
-               --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
+               --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                 --palette--;;hidden,
                  --palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.visibility;visibility,
                  --palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;access,
                --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.extended',
@@ -56,7 +58,19 @@ $GLOBALS['TCA']['tt_content']['types']['document_spreadsheet'] = [
                     ]
                 ]
             ]
-        ]
+        ],
+        'cols' => [
+            'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:csv'
+        ],
+        'table_header_position' => [
+            'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:csv'
+        ],
+        'table_tfoot' => [
+            'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:csv'
+        ],
+        'table_class' => [
+            'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:csv'
+        ],
     ]
 ];
 
