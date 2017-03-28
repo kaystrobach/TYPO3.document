@@ -36,6 +36,8 @@ class DocumentSpreadsheetProcessor implements DataProcessorInterface
         $processedData['tableMaximumColumns'] = $cObj->stdWrapValue('tableMaximumColumns', $referenceConfiguration);
         $processedData['tableFirstRowIsHeader'] = $cObj->stdWrapValue('tableFirstRowIsHeader', $referenceConfiguration);
         $processedData['tableLastRowIsFooter'] = $cObj->stdWrapValue('tableLastRowIsFooter', $referenceConfiguration);
+        $processedData['tableDisplayColors'] = $cObj->stdWrapValue('tableDisplayColors', $referenceConfiguration);
+        $processedData['tableDisplayImages'] = $cObj->stdWrapValue('tableDisplayImages', $referenceConfiguration);
         $processedData['tableSheetsToRender'] = GeneralUtility::trimExplode(
             ',',
             $cObj->cObjGetSingle($referenceConfiguration['tableSheetsToRender'], $referenceConfiguration['tableSheetsToRender.'])
@@ -85,8 +87,10 @@ class DocumentSpreadsheetProcessor implements DataProcessorInterface
         $objWriter = new \TYPO3\CMS\Document\PhpOffice\PhpSpreadsheet\Writer\Html($objPHPExcel);
         $objWriter->generateSheetData();
         $objWriter->setUseInlineCss(false);
-        $objWriter->setEmbedImages(true);
-        $objWriter->setImagesRoot(sys_get_temp_dir());
+        if ($processedData['tableDisplayImages']) {
+            $objWriter->setEmbedImages(true);
+            $objWriter->setImagesRoot(sys_get_temp_dir());
+        }
 
         $objWriter->save($writerTempFileName);
 
@@ -99,7 +103,7 @@ class DocumentSpreadsheetProcessor implements DataProcessorInterface
                     'title' => $objPHPExcel->getSheet($sheetNumber)->getTitle(),
                     //'content' => file_get_contents($writerTempFileName)
                     'content' => $objWriter->generateSheetData(),
-                    'styles' => $objWriter->generateStyles(false)
+                    'styles' => $processedData['tableDisplayColors'] ? $objWriter->generateStyles(false) : '',
                 ];
             } catch (\Exception $e) {
                 // ignore

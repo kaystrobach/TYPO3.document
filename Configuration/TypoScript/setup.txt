@@ -62,6 +62,10 @@ tt_content.document_spreadsheet {
                 tableLastRowIsFooter.field = table_tfoot
                 tableSheetsToRender = TEXT
                 tableSheetsToRender.field = table_display_sheets
+                tableDisplayImages = TEXT
+                tableDisplayImages.field = table_display_images
+                tableDisplayColors = TEXT
+                tableDisplayColors.field = table_display_colors
             }
         }
     }

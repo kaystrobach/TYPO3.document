@@ -14,6 +14,23 @@ $GLOBALS['TCA']['tt_content']['columns']['table_display_sheets'] = [
     ],
     'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:xls,xlsx,ods'
 ];
+$GLOBALS['TCA']['tt_content']['columns']['table_display_images'] = [
+    'exclude' => 1,
+    'label' => 'LLL:EXT:document/Resources/Private/Language/locallang.xlf:table_display_images',
+    'config' => [
+        'type' => 'check',
+    ],
+    'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:xls,xlsx,ods'
+];
+$GLOBALS['TCA']['tt_content']['columns']['table_display_colors'] = [
+    'exclude' => 1,
+    'label' => 'LLL:EXT:document/Resources/Private/Language/locallang.xlf:table_display_colors',
+    'config' => [
+        'type' => 'check',
+    ],
+    'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:xls,xlsx,ods'
+];
+
 
 $GLOBALS['TCA']['tt_content']['types']['document_spreadsheet'] = [
     'showitem' => '
@@ -22,6 +39,8 @@ $GLOBALS['TCA']['tt_content']['types']['document_spreadsheet'] = [
                  media,
                  table_display_sheets,
                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+                 table_display_images,
+                 table_display_colors,
                  --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.table_layout;tablelayout,
                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                  --palette--;;hidden,

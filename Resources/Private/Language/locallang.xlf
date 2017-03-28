@@ -27,6 +27,12 @@
 			<trans-unit id="table_display_sheets" xml:space="preserve">
 				<source>Sheets to display</source>
 			</trans-unit>
+			<trans-unit id="table_display_images" xml:space="preserve">
+				<source>Display images</source>
+			</trans-unit>
+			<trans-unit id="table_display_colors" xml:space="preserve">
+				<source>Keep colors</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

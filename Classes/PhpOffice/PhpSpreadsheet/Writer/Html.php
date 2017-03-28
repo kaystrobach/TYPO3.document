@@ -19,12 +19,14 @@ class Html extends \PhpOffice\PhpSpreadsheet\Writer\Html
         $css = parent::generateStyles($generateSurroundingHTML);
         $css = preg_replace(
             [
-                '/font-family:[^;]*;/i',
-                '/font-size:[^;]*;/i',
+                '/ font-family:[^;]*;/i',
+                '/ font-size:[^;]*;/i',
+            //    '/ color:[^;]*;/i',
+            //    '/ background-color:[^;]*;/i',
             ],
             [
                 '',
-                ''
+                '',
             ],
             $css
         );
