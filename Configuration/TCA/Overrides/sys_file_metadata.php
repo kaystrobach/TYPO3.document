@@ -17,7 +17,7 @@ $GLOBALS['TCA']['sys_file_metadata']['columns']['table_delimiter'] = [
         ],
         'max' => 1,
     ],
-    'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:csv:txt'
+    'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:csv,txt'
 ];
 $GLOBALS['TCA']['sys_file_metadata']['columns']['table_enclosure'] = [
     'label' => 'LLL:EXT:document/Resources/Private/Language/locallang.xlf:table_enclosure',

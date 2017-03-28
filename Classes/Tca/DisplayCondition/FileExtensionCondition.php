@@ -16,9 +16,14 @@ class FileExtensionCondition
     {
         $fileRecord = $this->getFileRecord($parameter);
 
+
+
         if ($fileRecord !== null) {
-            if (in_array($fileRecord['extension'], $parameter['conditionParameters'])) {
-                return true;
+            if (isset($parameter['conditionParameters'][0])) {
+                $allowedExtensions = explode(',', $parameter['conditionParameters'][0]);
+                if (in_array($fileRecord['extension'], $allowedExtensions)) {
+                    return true;
+                }
             }
         }
         return false;

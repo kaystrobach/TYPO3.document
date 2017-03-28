@@ -9,6 +9,7 @@
     ],
     "require": {
         "phpoffice/phpexcel": "^1.8",
-        "phpoffice/phpword": "^0.13.0"
+        "phpoffice/phpword": "^0.13.0",
+        "phpoffice/phpspreadsheet": "dev-develop"
     }
 }

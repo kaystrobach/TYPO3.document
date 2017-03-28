@@ -61,6 +61,9 @@
 <f:if condition="{renderedSheets}">
     <div class="table-responsive">
         <f:for each="{renderedSheets}" as="sheet">
+            <style type="text/css">
+                {sheet.styles -> f:format.raw()}
+            </style>
             {sheet.content -> f:format.raw()}
         </f:for>
     </div>

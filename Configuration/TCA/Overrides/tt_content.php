@@ -5,7 +5,6 @@ $GLOBALS['TCA']['tt_content']['columns']['table_display_sheets'] = [
     'label' => 'LLL:EXT:document/Resources/Private/Language/locallang.xlf:table_display_sheets',
     'config' => [
         'type' => 'select',
-        //'renderType' => 'selectCheckBox',
         'renderType' => 'selectMultipleSideBySide',
         'itemsProcFunc' => 'TYPO3\CMS\Document\Tca\Items\ExtractSheets->processItems',
         'minitems' => 1,
@@ -13,7 +12,7 @@ $GLOBALS['TCA']['tt_content']['columns']['table_display_sheets'] = [
         ],
         'exclusiveKeys' => '-1,-2'
     ],
-    'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:xls:xlsx:xml:ods'
+    'displayCond' => 'USER:TYPO3\CMS\Document\Tca\DisplayCondition\FileExtensionCondition->match:xls,xlsx,ods'
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['document_spreadsheet'] = [
@@ -38,7 +37,7 @@ $GLOBALS['TCA']['tt_content']['types']['document_spreadsheet'] = [
                         'uid_local' => [
                             'config' => [
                                 'appearance' => [
-                                    'elementBrowserAllowed' => 'csv,xlsx,xls,xml,ods',
+                                    'elementBrowserAllowed' => 'csv,xlsx,xls,ods,slk',
                                     'disallowedFileExtensions' => ''
                                 ]
                             ]
@@ -46,13 +45,15 @@ $GLOBALS['TCA']['tt_content']['types']['document_spreadsheet'] = [
                     ]
                 ],
                 'appearance' => [
-                    'headerThumbnail' => false
+                    'headerThumbnail' => false,
+                    'fileUploadAllowed' => true,
+                    'collapseAll' => false,
                 ],
                 'maxitems' => 1,
                 'filter' => [
                     0 => [
                         'parameters' => [
-                            'allowedFileExtensions' => 'csv,xlsx,xls,xml,ods',
+                            'allowedFileExtensions' => 'csv,xlsx,xls,ods,slk',
                             'disallowedFileExtensions' => ''
                         ]
                     ]

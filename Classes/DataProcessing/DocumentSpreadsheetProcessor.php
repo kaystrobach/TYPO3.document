@@ -3,6 +3,8 @@
 namespace TYPO3\CMS\Document\DataProcessing;
 
 
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Writer\Html;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\CsvUtility;
@@ -77,22 +79,27 @@ class DocumentSpreadsheetProcessor implements DataProcessorInterface
 
         $originalFileForLocalProcessing = $file->getForLocalProcessing(true);
         $writerTempFileName = GeneralUtility::tempnam('document-html');
-        $objPHPExcel = \PHPExcel_IOFactory::load($originalFileForLocalProcessing);
-        /** @var \PHPExcel_Writer_HTML $objWriter */
-        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'HTML');
-        //$objWriter->generateSheetData();
-        $objWriter->setUseInlineCss(true);
-        $objWriter->writeAllSheets();
-        $objWriter->setIncludeCharts(true);
+
+        $objPHPExcel = IOFactory::load($originalFileForLocalProcessing);
+        /** @var Html $objWriter */
+        $objWriter = new \TYPO3\CMS\Document\PhpOffice\PhpSpreadsheet\Writer\Html($objPHPExcel);
+        $objWriter->generateSheetData();
+        $objWriter->setUseInlineCss(false);
+        $objWriter->setEmbedImages(true);
+        $objWriter->setImagesRoot(sys_get_temp_dir());
+
         $objWriter->save($writerTempFileName);
 
 
         foreach ($processedData['tableSheetsToRender'] as $sheetNumber) {
             try {
                 $objWriter->setSheetIndex($sheetNumber);
+                $objWriter->save($writerTempFileName);
                 $processedData['renderedSheets'][] = [
                     'title' => $objPHPExcel->getSheet($sheetNumber)->getTitle(),
+                    //'content' => file_get_contents($writerTempFileName)
                     'content' => $objWriter->generateSheetData(),
+                    'styles' => $objWriter->generateStyles(false)
                 ];
             } catch (\Exception $e) {
                 // ignore
