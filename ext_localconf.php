@@ -2,7 +2,7 @@
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
     'mod {
-     wizards.newContentElement.wizardItems.extra {
+     wizards.newContentElement.wizardItems.plugins {
        elements {
          document_spreadsheet {
            iconIdentifier = tx_document_spreadsheet
