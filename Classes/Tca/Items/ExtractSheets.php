@@ -5,6 +5,9 @@ namespace TYPO3\CMS\Document\Tca\Items;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use TYPO3\CMS\Backend\Form\FormDataProvider\TcaSelectItems;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 class ExtractSheets
@@ -24,7 +27,7 @@ class ExtractSheets
             return $params;
         }
 
-        /** @var  TcaSelectItems $itemsObject */;
+        /** @var  TcaSelectItems $itemsObject */
         $originalFileForLocalProcessing = $file->getForLocalProcessing(true);
         try {
             $objPHPExcel = IOFactory::load($originalFileForLocalProcessing);
@@ -52,15 +55,19 @@ class ExtractSheets
      */
     public function getFileRecord($contentElementUid)
     {
-        $fileMetadata = BackendUtility::getRecordsByField(
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('sys_file_reference');
+        $fileMetadata = $connection->select(
+            ['*'],
             'sys_file_reference',
-            'uid_foreign',
-            $contentElementUid
-        );
+            [
+                'uid_foreign' => $contentElementUid
+            ]
+        )->getIterator()->fetchAllAssociative();
+
         if (isset($fileMetadata[0]['uid_local'])) {
-            $resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
-            $file = $resourceFactory->getFileObject($fileMetadata[0]['uid_local']);
-            return $file;
+            $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+            return $resourceFactory->getFileObject($fileMetadata[0]['uid_local']);
         }
         return null;
     }
